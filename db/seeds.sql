@@ -17,11 +17,11 @@ VALUES
     ("Operations Manager", 110000, 3),
     ("Lawyer", 90000, 4);
 
-INSERT INTO employees
+INSERT INTO employee
     (first_name, last_name, role_id)
 VALUES
     ("Tony", "Stark", 1),
-    ("Stephanie", "Chaparro", 1),    
-    ("Joe", "Brown", 1),    
-    ("Elon", "Musk", 1);            
+    ("Stephanie", "Chaparro", 2),    
+    ("Joe", "Brown", 3),    
+    ("Elon", "Musk", 4);            
     

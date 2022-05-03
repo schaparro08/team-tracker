@@ -1,4 +1,5 @@
 const {prompt} = require('inquirer');
+const { findDepartment } = require('./db');
 const db = require('./db');
 require('console.table');
 
@@ -15,12 +16,29 @@ function mainMenu() {
                     name: 'View ALL Employees',
                     value: 'VIEW_EMPLOYEES'
                 },
-                // view employees
-                //view departments
-                //view roles
-                //add employee
-                // add department
-                //update an employee role
+                {
+                    name: 'View ALL Departments',
+                    value: 'VIEW_DEPARTMENTS'
+                },
+                {
+                    name:'View ALL roles',
+                    value: 'VIEW_ROLES'
+
+                },
+                {
+                    name: 'Add new employee',
+                    value: 'ADD_EMPLOYEE'
+
+                },
+                {
+                    name: 'Add new department',
+                    value: 'ADD_DEPARTMENT'
+
+                },
+                {
+                    name: 'Update employee role',
+                    value: 'UPDATE_ROLE'
+                },
                 {
                     name: 'Quit',
                     value: 'QUIT'
@@ -28,8 +46,15 @@ function mainMenu() {
             ]
         }
     ]).then(res => {
-        let choices = res.choices;
+        let answer = res.choice;
+        console.log(answer);
         //NOW WE CALL THE APPROPRIATE FUNCTION DEPENDING ON WHAT THE USER CHOOSES
+        if (answer === 'VIEW_EMPLOYEES') {
+            // console.log('Hello There');
+            viewEmployees();
+        } else if (answer === 'VIEW_DEPARTMENTS') {
+            viewDepartments();
+        }
         // HOW WOULD YOU ORGANIZE THIS
         // if conditional
         // switch case
@@ -45,7 +70,7 @@ function mainMenu() {
 //}
 
 function viewEmployees() {
-    db.findAllEmployees()
+    db.findEmployee()
     .then(([rows]) => {
         let employees = rows;
         console.log('\n');
@@ -54,7 +79,23 @@ function viewEmployees() {
     .then(() => mainMenu());
 }
 
+function viewDepartments() {
+    db.findDepartment()
+    .then(([rows]) => {
+        let departments = rows;
+        console.log('\n');
+        console.table(departments)
+    })
+    .then(()=> mainMenu());
+}
+
 function quit() {
     console.log("Goodbye!");
     process.exit();
 }
+
+const init = () => {
+mainMenu()
+}
+
+init()
