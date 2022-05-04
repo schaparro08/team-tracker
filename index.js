@@ -105,9 +105,7 @@ function viewRoles() {
 
 function makeEmployee() {
   db.findRoles() // go into inquirer here
-    .then(([rows]) => {
-      let roles = rows;
-      console.log(roles);
+    //   console.log(roles);
       prompt([
         {
           type: "input",
@@ -118,20 +116,40 @@ function makeEmployee() {
           type: "input",
           name: "lastName",
           message: "What is the employees last name?",
-        },
+        }])
+        .then(res =>{
+        db.findEmployee() 
+        .then(([rows]) => {
+            let roles = rows;
+            const roleChoices = roles.map(({title, id}) => ({
+                name: title,
+                value: id
+            }));
+
+     prompt([
         {
           type: "list",
-          name: "role",
+          name: "roleId",
           message: "What is the employees role?",
-          choices: roles,
-        },
+          choices: roleChoices,
+        }
       ])
         .then((res) => {
-          let answer = res.choice;
-          console.log(answer);
+          let roleId = res.roleId;
+          console.log(roleId);
+        })
+        .then(res => {
+            let employee = {
+                first_name: firstName,
+                last_name: lastName,
+                role_id: id
+
+            }
+            db.addNewEmployee(employee);
         })
         .then(() => mainMenu());
     });
+})
 }
 
 function quit() {
