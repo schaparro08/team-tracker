@@ -15,8 +15,6 @@ salary DECIMAL UNSIGNED NOT NULL,
 department_id INT UNSIGNED NOT NULL,
 FOREIGN KEY(department_id)
 REFERENCES department(id)
-PRIMARY KEY(id)
-PRIMARY KEY(salary)
 );
 
 CREATE TABLE employee (
@@ -24,9 +22,9 @@ CREATE TABLE employee (
 first_name VARCHAR(250) UNIQUE NOT NULL,
 last_name VARCHAR(250) UNIQUE NOT NULL,
 role_id INT UNSIGNED NOT NULL,
-salary INT UNSIGNED NOT NULL,
+manager_id INT UNSIGNED,
 FOREIGN KEY(role_id)
 REFERENCES role(id),
-FOREIGN KEY(salary)
-REFERENCES role(salary)
+FOREIGN KEY(manager_id)
+REFERENCES employee(id)
 );

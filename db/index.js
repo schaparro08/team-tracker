@@ -8,18 +8,23 @@ class DB {
     }
     findEmployee() {
         return this.connection.promise().query(
-            'SELECT employee.first_name, employee.last_name, employee.role_id, employee.salary FROM employee;'
+            'SELECT * FROM employee;'
             // figuer out which functions are needed all within class db
         )
     }
     findDepartment() {
         return this.connection.promise().query(
-            'SELECT department.name, department.id FROM department;'
+            'SELECT * FROM department;'
         )
     }
     findRoles() {
         return this.connection.promise().query(
-            'SELECT role.title, role.id, role.salary, role.department_id FROM role;'
+            'SELECT * FROM role;'
+        )
+    }
+    addNewEmployee(firstName, lastName, roleId) {
+        return this.connection.promise().query(
+            'INSERT INTO employee(first_name, last_name, role_id) VALUES(firstName, lastName, roleId);'
         )
     }
 }
