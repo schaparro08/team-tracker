@@ -31,6 +31,11 @@ function mainMenu() {
 
                 },
                 {
+                    name: 'Add new role',
+                    value: 'ADD_ROLE'
+
+                },
+                {
                     name: 'Add new department',
                     value: 'ADD_DEPARTMENT'
 
@@ -54,8 +59,10 @@ function mainMenu() {
             viewEmployees();
         } else if (answer === 'VIEW_DEPARTMENTS') {
             viewDepartments();
+        } else if (answer === 'VIEW_ROLES') {
+            viewRoles();
         }
-        // HOW WOULD YOU ORGANIZE THIS
+        
         // if conditional
         // switch case
 
@@ -85,6 +92,16 @@ function viewDepartments() {
         let departments = rows;
         console.log('\n');
         console.table(departments)
+    })
+    .then(()=> mainMenu());
+}
+
+function viewRoles() {
+    db.findRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        console.log('\n');
+        console.table(roles)
     })
     .then(()=> mainMenu());
 }
