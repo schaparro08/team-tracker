@@ -3,7 +3,7 @@
 
 ### The Team Generator uses inquirer and SQL in order to create databases and retrieve specific requested information from them. You are able to see the departments an employee belongs to, roles, salar, and id. The app also allows the user to add a new employee, department, role, or manager.
 
-> [Video Link]()
+> [Video Link](https://drive.google.com/file/d/1BDy05r1oZKDL3plq7CqnMPHWIzGOXNLr/view)
 
 ## Location
 
